@@ -80,10 +80,10 @@ for (i = 0; i < iconlink.length; i++) {
 
 //데이터에 new있으면 new표시 보이게 하기
 //게시글 생성
-fetch("./post_data.json")
+fetch("https://raw.githubusercontent.com/dbwjd7265/portfolio/dev/public/js/post_data.json")
   .then((response) => response.json())
   .then((data) => {
-    console.log(data); // data 변수에 JSON 데이터가 저장됩니다.
+    console.log(data[2].title); // data 변수에 JSON 데이터가 저장됩니다.
   })
   .catch((error) => {
     console.log("데이터를 불러오는데 실패했습니다.");
