@@ -79,36 +79,39 @@ for (i = 0; i < iconlink.length; i++) {
 }
 
 //데이터에 new있으면 new표시 보이게 하기
-//게시글 생성
-fetch("https://raw.githubusercontent.com/dbwjd7265/portfolio/dev/public/js/post_data.json")
+fetch(
+  "https://raw.githubusercontent.com/dbwjd7265/portfolio/dev/public/js/post_data.json"
+)
   .then((response) => response.json())
   .then((data) => {
-    console.log(data[2].title); // data 변수에 JSON 데이터가 저장됩니다.
-  })
-  .catch((error) => {
-    console.log("데이터를 불러오는데 실패했습니다.");
-  });
+    const postListElements = document.querySelectorAll(".post-list");
+    const postLn = postListElements.length;
 
-const postLn = document.querySelectorAll(".post").length;
-for (j = 0; j < postLn; j++) {
-  for (i = 0; i < 4; i++) {
-    let postlist = `
+    for (j = 0; j < postLn; j++) {
+      //4개씩 끊어서 카운트
+      const startIndex = j * 4;
+      const endIndex = startIndex + 4;
+      for (i = startIndex; i < endIndex; i++) {
+        if (i >= data.length) break; // 데이터 배열 범위를 벗어나면 종료
+        let postlist = `
               <article>
                   <a href="#">
-                      <div class="img" style="background-image: url('https://via.placeholder.com/150')">
+                      <div class="img" style="background-image: url('./public/img/${data[i].img}')">
                           <span class="new">NEW</span>
                           <span class="mark"><i class='bx bxs-bookmark' ></i></span>
                       </div>
                       <div class="text">
-                          <p><span>따뜻 포근 26평!</span>홈스타일링 노하우만으로 완성!</p>
+                          <p><span>${data[i].strong}</span>${data[i].title}</p>
                       </div>
                   </a>
               </article>`;
-    document
-      .querySelectorAll(".post-list")
-      [j].insertAdjacentHTML("beforeend", postlist);
-  }
-}
+        postListElements[j].insertAdjacentHTML("beforeend", postlist);
+      }
+    }
+  })
+  .catch((error) => {
+    console.log("데이터를 불러오는데 실패했습니다.");
+  });
 
 const markSpans = document.querySelectorAll(".mark");
 markSpans.forEach((markSpan) => {
