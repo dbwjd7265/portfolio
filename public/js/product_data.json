@@ -1,0 +1,14 @@
+
+[
+    {
+        "id" : 0,
+        "company" : "제조사 or 판매업체",
+        "title" : "제품명",
+        "discount" : 33,
+        "price" : 50000,
+        "star" : "별점",
+        "review": 110,
+        "freeSH": 0,
+        "special": 0
+    }
+]

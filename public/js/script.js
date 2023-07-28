@@ -93,18 +93,22 @@ fetch(
       const endIndex = startIndex + 4;
       for (i = startIndex; i < endIndex; i++) {
         if (i >= data.length) break; // 데이터 배열 범위를 벗어나면 종료
+        let newElement = `<span class="new">NEW</span>`; 
+        if (data[i].new === 0) {
+          newElement = `<span class="new on">NEW</span>`; //새상품or새게시글이면 new추가
+        }
         let postlist = `
-              <article>
-                  <a href="#">
-                      <div class="img" style="background-image: url('./public/img/${data[i].img}')">
-                          <span class="new">NEW</span>
-                          <span class="mark"><i class='bx bxs-bookmark' ></i></span>
-                      </div>
-                      <div class="text">
-                          <p><span>${data[i].strong}</span>${data[i].title}</p>
-                      </div>
-                  </a>
-              </article>`;
+        <article>
+          <a href="#">
+            <div class="img" style="background-image: url('./public/img/${data[i].img}')">
+              ${newElement}
+              <span class="mark"><i class='bx bxs-bookmark' ></i></span>
+            </div>
+            <div class="text">
+                <p><span>${data[i].strong}</span>${data[i].title}</p>
+            </div>
+          </a>
+        </article>`;
         postListElements[j].insertAdjacentHTML("beforeend", postlist);
       }
     }
@@ -121,5 +125,3 @@ markSpans.forEach((markSpan) => {
     iconElement.classList.toggle("save");
   });
 });
-
-console.log(postLn);

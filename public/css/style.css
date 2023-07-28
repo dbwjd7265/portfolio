@@ -367,17 +367,17 @@ nav span a.on:after {
   margin-top: 20px;
 }
 
-section.post {
-    margin-bottom: 50px;
+.post {
+  margin-bottom: 50px;
 }
 
-section.post .post-title {
+.post .post-title {
   display: flex;
   margin-bottom: 20px;
   justify-content: space-between;
 }
 
-section.post .post-title h3 {
+.post .post-title h3 {
   overflow: hidden;
   display: inline-block;
   font-weight: 700;
@@ -389,7 +389,7 @@ section.post .post-title h3 {
   line-height: 28px;
 }
 
-section.post .post-title .more {
+.post .post-title .more {
   color: #35c5f0;
   font-weight: bold;
   cursor: pointer;
@@ -397,17 +397,17 @@ section.post .post-title .more {
   line-height: 20px;
 }
 
-section.post .post-list {
+.post .post-list {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
 
-section.post .post-list a:hover .img {
-    background-size: 120%;
+.post .post-list a:hover .img {
+  background-size: 120%;
 }
 
-section.post .post-list .img {
+.post .post-list .img {
   background-size: 100%;
   background-position: center center;
   height: 180px;
@@ -415,25 +415,28 @@ section.post .post-list .img {
   position: relative;
   border-radius: 4px;
   margin-bottom: 10px;
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
-section.post .post-list .img .new {
-    font-size: 10px;
-    padding: 0px 6px;
-    color: rgb(255, 255, 255);
-    background-color: rgb(255, 119, 119);
-    display: inline-block;
-    font-weight: 700;
-    height: 20px;
-    line-height: 20px;
-    border-radius: 4px;
-    position: absolute;
-    top: 10px;
-    left: 10px;
+.post .post-list .img .new {
+  display: none;
+  font-size: 10px;
+  padding: 0px 6px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(255, 119, 119);
+  font-weight: 700;
+  height: 20px;
+  line-height: 20px;
+  border-radius: 4px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+.post .post-list .img .new.on {
+  display: inline-block;
 }
 
-section.post .post-list .img .mark {
+.post .post-list .img .mark {
   position: absolute;
   bottom: 0px;
   right: 10px;
@@ -441,17 +444,17 @@ section.post .post-list .img .mark {
   z-index: 5;
 }
 
-section.post .post-list .img .mark .bxs-bookmark:before {
-    color:#fff;
-    opacity: 0.5;
+.post .post-list .img .mark .bxs-bookmark:before {
+  color: #fff;
+  opacity: 0.5;
 }
 
-section.post .post-list .img .mark .save.bxs-bookmark:before {
-    color: #35c5f0;
-    opacity: 1;
+.post .post-list .img .mark .save.bxs-bookmark:before {
+  color: #35c5f0;
+  opacity: 1;
 }
 
-section.post .post-list .text {
+.post .post-list .text {
   min-width: 0px;
   font-size: 16px;
   line-height: 24px;
@@ -461,14 +464,14 @@ section.post .post-list .text {
   overflow-wrap: break-word;
 }
 
-section.post .post-list .text p {
+.post .post-list .text p {
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 }
 
-section.post .post-list .text span {
+.post .post-list .text span {
   font-weight: bold;
   color: #35c5f0;
   margin-right: 5px;
