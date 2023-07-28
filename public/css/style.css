@@ -368,16 +368,20 @@ nav span a.on:after {
 }
 
 .post {
+  margin-bottom: 35px;
+}
+
+section {
   margin-bottom: 50px;
 }
 
-.post .post-title {
+.section-title {
   display: flex;
   margin-bottom: 20px;
   justify-content: space-between;
 }
 
-.post .post-title h3 {
+.section-title h3 {
   overflow: hidden;
   display: inline-block;
   font-weight: 700;
@@ -389,7 +393,7 @@ nav span a.on:after {
   line-height: 28px;
 }
 
-.post .post-title .more {
+.section-title .more {
   color: #35c5f0;
   font-weight: bold;
   cursor: pointer;
@@ -397,20 +401,28 @@ nav span a.on:after {
   line-height: 20px;
 }
 
-.post .post-list {
+.section-list.greed4 {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
 
-.post .post-list a:hover .img {
-  background-size: 120%;
+.section-list.flex {
+  display: flex;
+  overflow: hidden;
 }
 
-.post .post-list .img {
+.section-list.flex article {
+  margin-right: 20px;
+}
+
+.section-list a:hover .img {
+  background-size: 110%;
+}
+
+.section-list .img {
   background-size: 100%;
   background-position: center center;
-  height: 180px;
   overflow: hidden;
   position: relative;
   border-radius: 4px;
@@ -418,7 +430,7 @@ nav span a.on:after {
   transition: all 0.3s;
 }
 
-.post .post-list .img .new {
+.section-list .img .top-tag {
   display: none;
   font-size: 10px;
   padding: 0px 6px;
@@ -432,11 +444,12 @@ nav span a.on:after {
   top: 10px;
   left: 10px;
 }
-.post .post-list .img .new.on {
+
+.section-list .img .top-tag.on {
   display: inline-block;
 }
 
-.post .post-list .img .mark {
+.section-list .img .mark {
   position: absolute;
   bottom: 0px;
   right: 10px;
@@ -444,17 +457,17 @@ nav span a.on:after {
   z-index: 5;
 }
 
-.post .post-list .img .mark .bxs-bookmark:before {
+.section-list .img .mark .bxs-bookmark:before {
   color: #fff;
   opacity: 0.5;
 }
 
-.post .post-list .img .mark .save.bxs-bookmark:before {
+.section-list .img .mark .save.bxs-bookmark:before {
   color: #35c5f0;
   opacity: 1;
 }
 
-.post .post-list .text {
+.section-list .text {
   min-width: 0px;
   font-size: 16px;
   line-height: 24px;
@@ -464,15 +477,140 @@ nav span a.on:after {
   overflow-wrap: break-word;
 }
 
-.post .post-list .text p {
+.section-list .text .title {
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 }
 
-.post .post-list .text span {
+.section-list strong {
   font-weight: bold;
   color: #35c5f0;
+  margin-right: 3px;
+}
+
+/* 메인 포스트 */
+.post .section-list .img {
+  height: 180px;
+}
+
+/* 오늘의 딜 */
+.today-deal .section-list .img {
+  height: 270px;
+}
+
+.section-list .img .top-tag.time {
+  display: inline-block;
+  font-size: 12px;
+}
+
+.today-deal .section-list .company {
+  font-size: 12px;
+  color: #828c94;
+  line-height: 1;
+}
+
+.today-deal .section-list .memo {
   margin-right: 5px;
+}
+
+.today-deal .section-list .name {
+  margin-top: 5px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 17px;
+  max-height: 34px;
+  -webkit-line-clamp: 2;
+  letter-spacing: -0.3px;
+}
+
+.today-deal .section-list .price {
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 23px;
+}
+
+.today-deal .section-list .review {
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: -0.3px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.today-deal .section-list .review .star {
+  color: #35c5f0;
+}
+
+.today-deal .section-list .review .cnt {
+  color: #9e9e9e;
+  margin-left: 3px;
+}
+
+.today-deal .section-list .tag span {
+  display: inline-block;
+  font-size: 12px;
+  padding: 0px 6px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(255, 119, 119);
+  height: 20px;
+  line-height: 20px;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+.today-deal .section-list .tag span.delivery {
+  background-color: #ddd;
+  color: rgb(117, 117, 117);
+}
+.today-deal .section-list .tag span.coupon {
+  background-color: #fff;
+  border: 1px solid #dedede;
+  color: #555;
+  margin-top: 5px;
+}
+
+.today-deal .section-list .tag span.coupon i {
+  margin-right: 2px;
+  font-size: 14px;
+  color: rgb(255, 119, 119);
+}
+
+/* 이런 사진 찾고 있나요? */
+.photo article {
+  margin: 0px 20px 0px 0px;
+  padding: 0px;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  width: calc((100% - 100px) / 6);
+}
+
+.photo .user-id {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+}
+
+.photo .user-img {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: inline-block;
+  background-color: green;
+  margin-right: 3px;
+}
+
+.photo .user-name {
+  overflow: hidden;
+  display: inline-block;
+  max-width: 100px;
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }

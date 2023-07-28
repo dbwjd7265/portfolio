@@ -84,7 +84,7 @@ fetch(
 )
   .then((response) => response.json())
   .then((data) => {
-    const postListElements = document.querySelectorAll(".post-list");
+    const postListElements = document.querySelectorAll(".section-list");
     const postLn = postListElements.length;
 
     for (j = 0; j < postLn; j++) {
@@ -93,9 +93,9 @@ fetch(
       const endIndex = startIndex + 4;
       for (i = startIndex; i < endIndex; i++) {
         if (i >= data.length) break; // 데이터 배열 범위를 벗어나면 종료
-        let newElement = `<span class="new">NEW</span>`; 
+        let newElement = `<span class="top-tag">NEW</span>`; 
         if (data[i].new === 0) {
-          newElement = `<span class="new on">NEW</span>`; //새상품or새게시글이면 new추가
+          newElement = `<span class="top-tag new on">NEW</span>`; //새상품or새게시글이면 new추가
         }
         let postlist = `
         <article>
@@ -105,7 +105,7 @@ fetch(
               <span class="mark"><i class='bx bxs-bookmark' ></i></span>
             </div>
             <div class="text">
-                <p><span>${data[i].strong}</span>${data[i].title}</p>
+                <p class="title"><strong>${data[i].strong}</strong>${data[i].title}</p>
             </div>
           </a>
         </article>`;
