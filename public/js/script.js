@@ -78,7 +78,7 @@ for (i = 0; i < iconlink.length; i++) {
   document.querySelector(".icon-link").insertAdjacentHTML("beforeend", icon);
 }
 
-//데이터에 new있으면 new표시 보이게 하기
+//20평대 집들이, 여름휴가 즐기기, 팬트리, 가성비와 센스 집들이
 fetch(
   "https://raw.githubusercontent.com/dbwjd7265/portfolio/dev/public/js/post_data.json"
 )
@@ -93,7 +93,7 @@ fetch(
       const endIndex = startIndex + 4;
       for (i = startIndex; i < endIndex; i++) {
         if (i >= data.length) break; // 데이터 배열 범위를 벗어나면 종료
-        let newElement = `<span class="top-tag">NEW</span>`; 
+        let newElement = `<span class="top-tag">NEW</span>`;
         if (data[i].new === 0) {
           newElement = `<span class="top-tag new on">NEW</span>`; //새상품or새게시글이면 new추가
         }
@@ -125,3 +125,39 @@ markSpans.forEach((markSpan) => {
     iconElement.classList.toggle("save");
   });
 });
+
+//오늘의 딜
+for (i = 0; i < 4; i++) {
+  const todayDealList = document.querySelector(".today-deal .section-list");
+  //3그리드 3개씩 끊기
+  let todayDeal = `
+    <article class="today-deal-item">
+      <a href="">
+        <div class="img" style=" background-image: url('https://via.placeholder.com/150');">
+          <span class="top-tag time">06:44:09 남음</span>
+          <span class="mark"><i class="bx bxs-bookmark"></i></span>
+        </div>
+        <div class="text">
+          <p class="company">스타일링홈</p>
+          <p class="name">
+            <span class="memo">[파격사은품]</span>업그레이드! NEW 미닉스 미니 건조기 3kg
+          </p>
+          <div class="price">
+            <strong>31%</strong>
+            <span>310,000</span>
+          </div>
+          <div class="review">
+            <span class="star"><i class="bx bxs-star"></i></span>
+            <span class="score">4.8</span>
+            <span class="cnt">리뷰 9,835</span>
+          </div>
+          <div class="tag">
+            <span class="delivery">무료배송</span>
+            <span class="sprice">특가</span>
+            <span class="coupon"><i class="bx bxs-coupon"></i>할인쿠폰</span>
+          </div>
+        </div>
+      </a>
+    </article>`;
+    todayDealList.insertAdjacentHTML("beforeend", todayDeal);
+}

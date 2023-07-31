@@ -2,17 +2,172 @@
 [
     {
         "id" : 0,
-        "company" : "제조사 or 판매업체",
-        "memo" : "[강조문구]",
-        "title" : "제품명",
-        "discount" : 33,
-        "price" : 50000,
-        "star" : "별점",
-        "review": 110,
+        "img" : "product01.png",
+        "company" : "오쏘몰",
+        "memo" : "[7/31 쿠폰가 129,000원][해외]",
+        "title" : "이뮨 정제+드링크 3-일분 1+1 (총 60일분)",
+        "discount" : 10,
+        "price" : 164900,
+        "star" : "4.8",
+        "review": 25,
         "tag" : {
             "delivery" : 0,
             "sprice" : 0,
-            "coupon" : 0
+            "coupon" : 1,
+            "cate" : "식품"
+        }
+    },
+    {
+        "id" : 1,
+        "img" : "product02.png",
+        "company" : "JMW",
+        "memo" : "[7/31 원데이]",
+        "title" : "BLDC 모터 터보 항공기 드라이기 MG1800 PLUS 올화이트",
+        "discount" : 54,
+        "price" : 129000,
+        "star" : "4.8",
+        "review": 5068,
+        "tag" : {
+            "delivery" : 0,
+            "sprice" : 0,
+            "coupon" : 1,
+            "cate" : "가전·디지털"
+        }
+    },
+    {
+        "id" : 2,
+        "img" : "product03.png",
+        "company" : "신일전자",
+        "memo" : "[오늘의딜]",
+        "title" : "창문형 에어컨 정속형(쉬운 자가설치) SMA-C7000DN",
+        "discount" : 41,
+        "price" : 511000,
+        "star" : "4.6",
+        "review": 5068,
+        "tag" : {
+            "delivery" : 0,
+            "sprice" : 0,
+            "coupon" : 0,
+            "cate" : "가전·디지털"
+        }
+    },
+    {
+        "id" : 3,
+        "img" : "product04.png",
+        "company" : "더블유드레스룸",
+        "memo" : "[단하루/최종가4,900원][1+1]",
+        "title" : "대용량 섬유탈취제 페브클린 500ml",
+        "discount" : 67,
+        "price" : 24000,
+        "star" : "4.6",
+        "review": 103,
+        "tag" : {
+            "delivery" : 0,
+            "sprice" : 0,
+            "coupon" : 1,
+            "cate" : "생활용품"
+        }
+    },
+    {
+        "id" : 4,
+        "img" : "product05.png",
+        "company" : "리포소",
+        "memo" : "[단하루3%+10%쿠폰][리퍼]",
+        "title" : "신규컬러 입고! pvc 강아지 미끄럼방지 롤매트 두께 6mm",
+        "discount" : 57,
+        "price" : 24000,
+        "star" : "4.7",
+        "review": 865,
+        "tag" : {
+            "delivery" : 0,
+            "sprice" : 0,
+            "coupon" : 1,
+            "cate" : "반려동물"
+        }
+    },
+    {
+        "id" : 5,
+        "img" : "product06.png",
+        "company" : "무스텔라",
+        "memo" : "[2천원쿠폰]",
+        "title" : "1+1 젠틀 샴푸 500ml",
+        "discount" : 43,
+        "price" : 46000,
+        "star" : "5",
+        "review": 2,
+        "tag" : {
+            "delivery" : 0,
+            "sprice" : 0,
+            "coupon" : 0,
+            "cate" : "생필품"
+        }
+    },
+    {
+        "id" : 6,
+        "img" : "product07.png",
+        "company" : "쿠쿠",
+        "memo" : "[쿠폰+카드7%]",
+        "title" : "폭염주의! 에어컨/써큘레이터 장마 더위 준비 BEST",
+        "discount" : 54,
+        "price" : 99000,
+        "star" : "4.8",
+        "review": 133,
+        "tag" : {
+            "delivery" : 0,
+            "sprice" : 0,
+            "coupon" : 1,
+            "cate" : "가전·디지털"
+        }
+    },
+    {
+        "id" : 7,
+        "img" : "product08.png",
+        "company" : "에덴미술",
+        "memo" : "[오늘의딜]",
+        "title" : "여름 감성 바다 PURENESS 인테리어 전시 포스터 액자 58종",
+        "discount" : 46,
+        "price" : 34500,
+        "star" : "4.4",
+        "review": 2621,
+        "tag" : {
+            "delivery" : 1,
+            "sprice" : 0,
+            "coupon" : 1,
+            "cate" : "가전·디지털"
+        }
+    },
+    {
+        "id" : 8,
+        "img" : "product09.png",
+        "company" : "이이공브이샵",
+        "memo" : "[10%쿠폰]",
+        "title" : "여름엔 더 깔끔하게! 귀여운 스폰지밥 스펀지 수세미 세트 / 주방잡화 모음",
+        "discount" : 40,
+        "price" : 12000,
+        "star" : "4.9",
+        "review": 1674,
+        "tag" : {
+            "delivery" : 1,
+            "sprice" : 0,
+            "coupon" : 1,
+            "cate" : "가전·디지털"
+        }
+    },
+    {
+        "id" : 9,
+        "img" : "product10.png",
+        "company" : "벤소닉",
+        "memo" : "[오늘의딜]",
+        "title" : "완판 제품 입점기념! 여행용 17인치 캐리어+14인치 레디백 SET",
+        "discount" : 63,
+        "price" : 109000,
+        "star" : "4.8",
+        "review": 186,
+        "tag" : {
+            "delivery" : 0,
+            "sprice" : 0,
+            "coupon" : 1,
+            "cate" : "가전·디지털"
         }
     }
 ]

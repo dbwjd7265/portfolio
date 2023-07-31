@@ -407,6 +407,12 @@ section {
   gap: 20px;
 }
 
+.section-list.greed3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
 .section-list.flex {
   display: flex;
   overflow: hidden;
@@ -613,4 +619,89 @@ section {
   color: rgb(255, 255, 255);
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+/* 시공 리뷰 */
+.review .title {
+  font-weight: bold;
+}
+
+.review .content {
+  overflow: hidden;
+  display: -webkit-box;
+  margin-top: 2px;
+  font-size: 16px;
+  line-height: 24px;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+/* 오늘의 기획전 */
+.today-plan article {
+  margin: 0px 20px 0px 0px;
+  padding: 0px;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  width: calc((100% - 60px) / 4);
+}
+
+.today-plan .text .company {
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.today-plan .text .name {
+  font-weight: bold;
+}
+
+/* 베스트 */
+.best .tag-list ul {
+  display: flex;
+  margin-bottom: 15px;
+  padding: 0px;
+  overflow: hidden;
+}
+
+.best .tag-list ul li {
+  margin-right: 10px;
+}
+
+.best .tag-list label {
+  display: inline-block;
+  position: relative;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 16px;
+  padding-left: 12px;
+  padding-right: 12px;
+  color: rgb(47, 52, 56);
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+.best .tag-list label.on {
+  color: rgb(255, 255, 255);
+  background-color: rgb(53, 197, 240);
+}
+
+.best .rank-mark {
+  position: absolute;
+  top: -13px;
+  left: 0;
+  font-size: 50px;
+}
+
+.best .rank-mark {
+  color: rgb(53, 197, 240);
+  position: relative;
+}
+
+.best .rank-mark span {
+  font-size: 20px;
+  position: absolute;
+  color: #fff;
+  top: 9px;
+  left: 21px;
 }
