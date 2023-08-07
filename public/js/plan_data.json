@@ -1,0 +1,37 @@
+[
+    {
+        "img" : "plan_00.avif",
+        "title" : "월간 가구 세일 ~83%",
+        "text" : "인기 브랜드 매일 원데이 특가!"
+    },
+    {
+        "img" : "plan_01.avif",
+        "title" : "수입주방대전 ~71%",
+        "text" : "글로벌 인기 브랜드 초특가"
+    },
+    {
+        "img" : "plan_02.avif",
+        "title" : "HOME STYLING FAIR ~67%",
+        "text" : "이번주 조명 스페셜 위크"
+    },
+    {
+        "img" : "plan_03.avif",
+        "title" : "UPTO 80% 할인! BEST 생필품 특가 대방출",
+        "text" : "매일 0시 선착순 20% 추가 할인 쿠폰까지!"
+    },
+    {
+        "img" : "plan_04.avif",
+        "title" : "UPTO 78% 할인! 키즈&베이비페어",
+        "text" : "최대 20% 쿠폰 & 신학기 준비 아이방 꾸미기 특가"
+    },
+    {
+        "img" : "plan_05.avif",
+        "title" : "물가안정 초특가 장보기! 오픈런-딜",
+        "text" : "전상품 무료배송, 요일마다 바뀌는 파격특가 장보기!"
+    },
+    {
+        "img" : "plan_06.avif",
+        "title" : "삼성 BESPOKE Home Meta",
+        "text" : "오늘의집 단독 홈 메타 서비스 오픈"
+    }
+]

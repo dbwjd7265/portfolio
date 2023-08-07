@@ -319,7 +319,7 @@ nav span a.on:after {
   position: relative;
 }
 
-.banner .event-list button {
+button.btn-default {
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -332,6 +332,11 @@ nav span a.on:after {
   top: calc(50% - 25px);
   transition: all 0.3s;
   opacity: 0;
+  z-index: 8;
+}
+
+button.btn-default i:before {
+  line-height: 50px;
 }
 
 .banner .event-list button.prev {
@@ -340,10 +345,6 @@ nav span a.on:after {
 
 .banner .event-list button.next {
   right: -15px;
-}
-
-.banner .event-list button i:before {
-  line-height: 50px;
 }
 
 .icon-link {
@@ -399,6 +400,9 @@ section {
   cursor: pointer;
   font-size: 16px;
   line-height: 20px;
+}
+.section-list {
+  position: relative;
 }
 
 .section-list.greed4 {
@@ -718,4 +722,27 @@ section {
   color: #fff;
   top: 9px;
   left: 21px;
+}
+
+/* 이런 사진 찾고 있나요? */
+.photo .section-list {
+  transition:  0.3s ease-in-out;
+}
+.photo .section-list .img {
+  height: 230px;
+}
+.photo .btn-box {
+  height: 100%;
+  position: relative;
+}
+.photo .btn-box button {
+  opacity: 1;
+}
+
+.photo .btn-box button.prev {
+  left: -25px;
+}
+
+.photo .btn-box button.next {
+  right: -25px;
 }

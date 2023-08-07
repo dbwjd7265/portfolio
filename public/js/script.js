@@ -167,3 +167,29 @@ fetch(
       todayDealList.insertAdjacentHTML("beforeend", todayDeal);
     }
   });
+
+//이런 사진을 찾고 있나요?
+fetch(
+  "https://raw.githubusercontent.com/dbwjd7265/portfolio/dev/public/js/photo_data.json"
+)
+  .then((response) => response.json())
+  .then((photo) => {
+    const photoList = document.querySelector(".photo .section-list");
+    for (i = 0; i < photo.length; i++) {
+      let photoArt = `
+      <article>
+        <a href="">
+          <div class="img" style=" background-image: url('./public/img/${photo[i].img}');">
+            <div class="user-id">
+              <span class="user-img" style=""></span>
+              <span class="user-name">${photo[i].user}</span>
+            </div>
+            <span class="mark"><i class="bx bxs-bookmark"></i></span>
+          </div>
+        </a>
+      </article>`;
+      photoList.insertAdjacentHTML("beforeend", photoArt);
+    }
+  });
+
+  //유저들의 인테리어 시공 리뷰
