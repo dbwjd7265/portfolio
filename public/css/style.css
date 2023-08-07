@@ -502,6 +502,14 @@ section {
 }
 
 /* 오늘의 딜 */
+.today-deal .today article {
+  margin: 0px 20px 0px 0px;
+  padding: 0px;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  width: calc((100% - 60px) / 4);
+}
+
 .today-deal .section-list .img {
   height: 270px;
 }
@@ -657,6 +665,12 @@ section {
 }
 
 /* 베스트 */
+/* .best.today-deal article {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+} */
+
 .best .tag-list ul {
   display: flex;
   margin-bottom: 15px;

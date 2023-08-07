@@ -127,37 +127,43 @@ markSpans.forEach((markSpan) => {
 });
 
 //오늘의 딜
-for (i = 0; i < 4; i++) {
-  const todayDealList = document.querySelector(".today-deal .section-list");
-  //3그리드 3개씩 끊기
-  let todayDeal = `
-    <article class="today-deal-item">
-      <a href="">
-        <div class="img" style=" background-image: url('https://via.placeholder.com/150');">
-          <span class="top-tag time">06:44:09 남음</span>
-          <span class="mark"><i class="bx bxs-bookmark"></i></span>
-        </div>
-        <div class="text">
-          <p class="company">스타일링홈</p>
-          <p class="name">
-            <span class="memo">[파격사은품]</span>업그레이드! NEW 미닉스 미니 건조기 3kg
-          </p>
-          <div class="price">
-            <strong>31%</strong>
-            <span>310,000</span>
-          </div>
-          <div class="review">
-            <span class="star"><i class="bx bxs-star"></i></span>
-            <span class="score">4.8</span>
-            <span class="cnt">리뷰 9,835</span>
-          </div>
-          <div class="tag">
-            <span class="delivery">무료배송</span>
-            <span class="sprice">특가</span>
-            <span class="coupon"><i class="bx bxs-coupon"></i>할인쿠폰</span>
-          </div>
-        </div>
-      </a>
-    </article>`;
-    todayDealList.insertAdjacentHTML("beforeend", todayDeal);
-}
+fetch(
+  "https://raw.githubusercontent.com/dbwjd7265/portfolio/dev/public/js/product_data.json"
+)
+  .then((response) => response.json())
+  .then((data) => {
+    for (i = 0; i < 4; i++) {
+      const todayDealList = document.querySelector(".today-deal .section-list");
+      let todayDeal = `
+        <article class="today-deal-item">
+          <a href="">
+            <div class="img" style=" background-image: url('./public/img/${data[i].img}');">
+              <span class="top-tag time">06:44:09 남음</span>
+              <span class="mark"><i class="bx bxs-bookmark"></i></span>
+            </div>
+            <div class="text">
+              <p class="company">${data[i].company}</p>
+              <p class="name">
+                <span class="memo">${data[i].memo}</span>
+                ${data[i].title}
+              </p>
+              <div class="price">
+                <strong>${data[i].discount}%</strong>
+                <span>${data[i].price}</span>
+              </div>
+              <div class="review">
+                <span class="star"><i class="bx bxs-star"></i></span>
+                <span class="score">${data[i].star}</span>
+                <span class="cnt">리뷰 ${data[i].review}</span>
+              </div>
+              <div class="tag">
+                <span class="delivery">무료배송</span>
+                <span class="sprice">특가</span>
+                <span class="coupon"><i class="bx bxs-coupon"></i>할인쿠폰</span>
+              </div>
+            </div>
+          </a>
+        </article>`;
+      todayDealList.insertAdjacentHTML("beforeend", todayDeal);
+    }
+  });
