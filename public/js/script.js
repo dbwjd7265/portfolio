@@ -192,4 +192,143 @@ fetch(
     }
   });
 
-  //유저들의 인테리어 시공 리뷰
+//유저들의 인테리어 시공 리뷰
+fetch(
+  "https://raw.githubusercontent.com/dbwjd7265/portfolio/dev/public/js/review_data.json"
+)
+  .then((response) => response.json())
+  .then((review) => {
+    const reviewList = document.querySelector(".review .section-list");
+    for (i = 0; i < review.length; i++) {
+      let reviewArt = `
+        <article>
+          <a href="">
+            <div class="img" style="background-image: url('./public/img/${review[i].img}');"></div>
+            <div class="text">
+              <p class="title">${review[i].company}</p>
+              <p class="content">${review[i].content}</p>
+            </div>
+          </a>
+        </article>`;
+      reviewList.insertAdjacentHTML("beforeend", reviewArt);
+    }
+  });
+
+//오늘의 기획전
+fetch(
+  "https://raw.githubusercontent.com/dbwjd7265/portfolio/dev/public/js/plan_data.json"
+)
+  .then((response) => response.json())
+  .then((plan) => {
+    const planList = document.querySelector(".today-plan .section-list");
+    for (i = 0; i < plan.length; i++) {
+      let planArt = `
+        <article>
+          <a href="">
+          <div class="img" style="background-image: url('./public/img/${plan[i].img}');"></div>
+          <div class="text">
+            <p class="company">${plan[i].text}</p>
+            <p class="name">${plan[i].title}</p>
+          </div>
+          </a>
+        </article>`;
+      planList.insertAdjacentHTML("beforeend", planArt);
+    }
+  });
+
+//베스트
+fetch(
+  "https://raw.githubusercontent.com/dbwjd7265/portfolio/dev/public/js/product_data.json"
+)
+  .then((response) => response.json())
+  .then((data) => {
+    for (i = 0; i < 3; i++) {
+      const todayDealList = document.querySelector(".best .section-list");
+      let todayDeal = `
+          <article class="today-deal-item">
+            <a href="">
+              <div class="img" style=" background-image: url('./public/img/${data[i].img}');">
+                <span class="top-tag time">06:44:09 남음</span>
+                <span class="mark"><i class="bx bxs-bookmark"></i></span>
+              </div>
+              <div class="text">
+                <p class="company">${data[i].company}</p>
+                <p class="name">
+                  <span class="memo">${data[i].memo}</span>
+                  ${data[i].title}
+                </p>
+                <div class="price">
+                  <strong>${data[i].discount}%</strong>
+                  <span>${data[i].price}</span>
+                </div>
+                <div class="review">
+                  <span class="star"><i class="bx bxs-star"></i></span>
+                  <span class="score">${data[i].star}</span>
+                  <span class="cnt">리뷰 ${data[i].review}</span>
+                </div>
+                <div class="tag">
+                  <span class="delivery">무료배송</span>
+                  <span class="sprice">특가</span>
+                  <span class="coupon"><i class="bx bxs-coupon"></i>할인쿠폰</span>
+                </div>
+              </div>
+            </a>
+          </article>`;
+      todayDealList.insertAdjacentHTML("beforeend", todayDeal);
+    }
+  });
+
+//캐러셀
+const slideWrap = document.querySelector('.slide-wrap');
+const slideContents = document.querySelectorAll('.slide-content');
+const prevBtn = document.querySelector('.prev');
+const nextBtn = document.querySelector('.next');
+const pagination = document.querySelector('.pagination');
+
+const slideCount = slideContents.length;
+let currentIndex = 0;
+
+// 페이지네이션 표시
+function updatePagination() {
+  pagination.textContent = `${currentIndex + 1}/${slideCount}`;
+}
+
+// 슬라이드 이동 함수
+function moveToSlide(index) {
+  if (index < 0) {
+    index = slideCount - 1;
+  } else if (index >= slideCount) {
+    index = 0;
+  }
+
+  currentIndex = index;
+  updatePagination();
+
+  const translateX = -currentIndex * 269;
+  slideWrap.style.transition = 'transform 0.5s ease-in-out';
+  slideWrap.style.transform = `translateX(${translateX}px)`;
+}
+
+// Prev 버튼 클릭 시
+prevBtn.addEventListener('click', () => {
+  moveToSlide(currentIndex - 1);
+});
+
+// Next 버튼 클릭 시
+nextBtn.addEventListener('click', () => {
+  moveToSlide(currentIndex + 1);
+});
+
+// 자동 슬라이드 함수
+function autoSlide() {
+  moveToSlide(currentIndex + 1);
+}
+
+// 5초 간격으로 자동 슬라이드 실행
+setInterval(autoSlide, 3000);
+
+// 초기화
+updatePagination();
+moveToSlide(currentIndex);
+
+
