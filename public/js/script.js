@@ -78,6 +78,45 @@ for (i = 0; i < iconlink.length; i++) {
   document.querySelector(".icon-link").insertAdjacentHTML("beforeend", icon);
 }
 
+//타이머
+// 목표 날짜 설정 (다음 날의 자정)
+const targetDate = new Date();
+targetDate.setDate(targetDate.getDate() + 1);
+targetDate.setHours(0, 0, 0, 0);
+// 남은 시간 계산 함수
+function calculateRemainingTime() {
+  const currentTime = new Date();
+  const timeDifference = targetDate - currentTime;
+
+  const seconds = Math.floor(timeDifference / 1000) % 60;
+  const formattedSeconds = seconds.toString().padStart(2, '0');
+
+  const minutes = Math.floor(timeDifference / (1000 * 60)) % 60;
+  const formattedMinutes = minutes.toString().padStart(2, '0');
+
+  const hours = Math.floor(timeDifference / (1000 * 60 * 60)) % 24;
+  const formattedHours = hours.toString().padStart(2, '0');
+
+  return `${formattedHours}:${formattedMinutes}:${formattedSeconds} 남음`;
+}
+
+
+// 타이머 업데이트 함수
+function updateTimer(timerId) {
+  const formattedTime = calculateRemainingTime();
+  const timerElement = document.getElementById(timerId);
+  if (timerElement) {
+    timerElement.textContent = formattedTime;
+  }
+}
+
+// 초기 업데이트 및 1초마다 업데이트
+function initializeTimer(timerId) {
+  updateTimer(timerId);
+  setInterval(() => updateTimer(timerId), 1000);
+}
+
+
 //20평대 집들이, 여름휴가 즐기기, 팬트리, 가성비와 센스 집들이
 fetch(
   "https://raw.githubusercontent.com/dbwjd7265/portfolio/dev/public/js/post_data.json"
@@ -127,46 +166,86 @@ markSpans.forEach((markSpan) => {
 });
 
 //오늘의 딜
-fetch(
-  "https://raw.githubusercontent.com/dbwjd7265/portfolio/dev/public/js/product_data.json"
-)
-  .then((response) => response.json())
-  .then((data) => {
-    for (i = 0; i < 4; i++) {
+
+document.addEventListener("DOMContentLoaded", function () {
+  fetch(
+    "https://raw.githubusercontent.com/dbwjd7265/portfolio/dev/public/js/product_data.json"
+  )
+    .then((response) => response.json())
+    .then((data) => {
       const todayDealList = document.querySelector(".today-deal .section-list");
-      let todayDeal = `
-        <article class="today-deal-item">
-          <a href="">
-            <div class="img" style=" background-image: url('./public/img/${data[i].img}');">
-              <span class="top-tag time">06:44:09 남음</span>
-              <span class="mark"><i class="bx bxs-bookmark"></i></span>
-            </div>
-            <div class="text">
-              <p class="company">${data[i].company}</p>
-              <p class="name">
-                <span class="memo">${data[i].memo}</span>
-                ${data[i].title}
-              </p>
-              <div class="price">
-                <strong>${data[i].discount}%</strong>
-                <span>${data[i].price}</span>
+      for (i = 0; i < 4; i++) {
+        const targetDate = new Date();
+        targetDate.setDate(targetDate.getDate() + 1);
+        targetDate.setHours(0, 0, 0, 0);
+
+        const timerId = `timer-${i}`; // 고유한 타이머 ID 생성
+
+        function calculateRemainingTime() {
+          const currentTime = new Date();
+          const timeDifference = targetDate - currentTime;
+
+          const seconds = Math.floor(timeDifference / 1000) % 60; //초
+          const formattedSeconds = seconds.toString().padStart(2, "0");
+
+          const minutes = Math.floor(timeDifference / (1000 * 60)) % 60; //분
+          const formattedMinutes = minutes.toString().padStart(2, "0");
+
+          const hours = Math.floor(timeDifference / (1000 * 60 * 60)) % 24; //시
+          const formattedHours = hours.toString().padStart(2, "0");
+
+          return `${formattedHours}:${formattedMinutes}:${formattedSeconds} 남음`;
+        }
+
+        function updateTimer() {
+          const formattedTime = calculateRemainingTime();
+          const timerElement = document.getElementById(timerId);
+          if (timerElement) {
+            // 요소가 존재하는 경우에만 업데이트
+            timerElement.textContent = formattedTime;
+          }
+        }
+
+        // 초기 업데이트 및 1초마다 업데이트
+        updateTimer();
+        setInterval(updateTimer, 1000);
+
+        let todayDeal = `
+          <article class="today-deal-item">
+            <a href="">
+              <div class="img" style=" background-image: url('./public/img/${
+                data[i].img
+              }');">
+              <span class="top-tag time" id="${timerId}">${calculateRemainingTime()}</span>
+                <span class="mark"><i class="bx bxs-bookmark"></i></span>
               </div>
-              <div class="review">
-                <span class="star"><i class="bx bxs-star"></i></span>
-                <span class="score">${data[i].star}</span>
-                <span class="cnt">리뷰 ${data[i].review}</span>
+              <div class="text">
+                <p class="company">${data[i].company}</p>
+                <p class="name">
+                  <span class="memo">${data[i].memo}</span>
+                  ${data[i].title}
+                </p>
+                <div class="price">
+                  <strong>${data[i].discount}%</strong>
+                  <span>${data[i].price}</span>
+                </div>
+                <div class="review">
+                  <span class="star"><i class="bx bxs-star"></i></span>
+                  <span class="score">${data[i].star}</span>
+                  <span class="cnt">리뷰 ${data[i].review}</span>
+                </div>
+                <div class="tag">
+                  <span class="delivery">무료배송</span>
+                  <span class="sprice">특가</span>
+                  <span class="coupon"><i class="bx bxs-coupon"></i>할인쿠폰</span>
+                </div>
               </div>
-              <div class="tag">
-                <span class="delivery">무료배송</span>
-                <span class="sprice">특가</span>
-                <span class="coupon"><i class="bx bxs-coupon"></i>할인쿠폰</span>
-              </div>
-            </div>
-          </a>
-        </article>`;
-      todayDealList.insertAdjacentHTML("beforeend", todayDeal);
-    }
-  });
+            </a>
+          </article>`;
+        todayDealList.insertAdjacentHTML("beforeend", todayDeal);
+      }
+    });
+});
 
 //이런 사진을 찾고 있나요?
 fetch(
@@ -190,6 +269,15 @@ fetch(
       </article>`;
       photoList.insertAdjacentHTML("beforeend", photoArt);
     }
+
+    const moreArt = `
+    <article class="moreArt">
+      <a href="">
+        <p class="icon"><i class='bx bxs-right-arrow-alt'></i></p>
+        <p class="text">더보기</p>
+      </a>
+    </article>`
+    photoList.insertAdjacentHTML("beforeend", moreArt);
   });
 
 //유저들의 인테리어 시공 리뷰
@@ -242,13 +330,47 @@ fetch(
 )
   .then((response) => response.json())
   .then((data) => {
+    const todayDealList = document.querySelector(".best .section-list");
     for (i = 0; i < 3; i++) {
-      const todayDealList = document.querySelector(".best .section-list");
+      const targetDate = new Date();
+      targetDate.setDate(targetDate.getDate() + 1);
+      targetDate.setHours(0, 0, 0, 0);
+
+      const timerId = `timer2-${i}`; // 고유한 타이머 ID 생성
+
+      function calculateRemainingTime() {
+        const currentTime = new Date();
+        const timeDifference = targetDate - currentTime;
+
+        const seconds = Math.floor(timeDifference / 1000) % 60; //초
+        const formattedSeconds = seconds.toString().padStart(2, "0");
+
+        const minutes = Math.floor(timeDifference / (1000 * 60)) % 60; //분
+        const formattedMinutes = minutes.toString().padStart(2, "0");
+
+        const hours = Math.floor(timeDifference / (1000 * 60 * 60)) % 24; //시
+        const formattedHours = hours.toString().padStart(2, "0");
+
+        return `${formattedHours}:${formattedMinutes}:${formattedSeconds} 남음`;
+      }
+
+      function updateTimer() {
+        const formattedTime = calculateRemainingTime();
+        const timerElement = document.getElementById(timerId);
+        if (timerElement) {
+          // 요소가 존재하는 경우에만 업데이트
+          timerElement.textContent = formattedTime;
+        }
+      }
+
+      // 초기 업데이트 및 1초마다 업데이트
+      updateTimer();
+      setInterval(updateTimer, 1000);
       let todayDeal = `
           <article class="today-deal-item">
             <a href="">
               <div class="img" style=" background-image: url('./public/img/${data[i].img}');">
-                <span class="top-tag time">06:44:09 남음</span>
+              <span class="top-tag time" id="${timerId}">${calculateRemainingTime()}</span>
                 <span class="mark"><i class="bx bxs-bookmark"></i></span>
               </div>
               <div class="text">
@@ -279,11 +401,11 @@ fetch(
   });
 
 //캐러셀
-const slideWrap = document.querySelector('.slide-wrap');
-const slideContents = document.querySelectorAll('.slide-content');
-const prevBtn = document.querySelector('.prev');
-const nextBtn = document.querySelector('.next');
-const pagination = document.querySelector('.pagination');
+const slideWrap = document.querySelector(".slide-wrap");
+const slideContents = document.querySelectorAll(".slide-content");
+const prevBtn = document.querySelector(".prev");
+const nextBtn = document.querySelector(".next");
+const pagination = document.querySelector(".pagination");
 
 const slideCount = slideContents.length;
 let currentIndex = 0;
@@ -293,29 +415,28 @@ function updatePagination() {
   pagination.textContent = `${currentIndex + 1}/${slideCount}`;
 }
 
-// 슬라이드 이동 함수
+//슬라이드 이동 함수
 function moveToSlide(index) {
   if (index < 0) {
     index = slideCount - 1;
   } else if (index >= slideCount) {
     index = 0;
   }
-
   currentIndex = index;
   updatePagination();
 
   const translateX = -currentIndex * 269;
-  slideWrap.style.transition = 'transform 0.5s ease-in-out';
+  slideWrap.style.transition = "transform 0.5s ease-in-out";
   slideWrap.style.transform = `translateX(${translateX}px)`;
 }
 
 // Prev 버튼 클릭 시
-prevBtn.addEventListener('click', () => {
+prevBtn.addEventListener("click", () => {
   moveToSlide(currentIndex - 1);
 });
 
 // Next 버튼 클릭 시
-nextBtn.addEventListener('click', () => {
+nextBtn.addEventListener("click", () => {
   moveToSlide(currentIndex + 1);
 });
 
@@ -332,3 +453,74 @@ updatePagination();
 moveToSlide(currentIndex);
 
 
+//상단 배너 닫기
+const topBanner = document.querySelector(".top-baaner button");
+topBanner.addEventListener("click", function(){
+  document.querySelector(".top-baaner").style.display = "none";
+});
+
+// 헤더 요소 선택
+const header = document.querySelector('.header');
+    
+// 스크롤 이벤트 리스너 추가
+window.addEventListener('scroll', () => {
+  // 스크롤 위치 계산
+  const scrollPosition = window.scrollY;
+  
+  // 헤더 고정 여부 결정
+  if (scrollPosition >= 100) {
+    header.classList.add('fixed');
+  } else {
+    header.classList.remove('fixed');
+  }
+});
+
+
+
+const photoList = document.querySelector(".photo .section-list");
+const photoprev = document.querySelector(".photo .prev");
+const photonext = document.querySelector(".photo .next");
+
+const itemsPerPage = 6;
+let currentPage = 0;
+// 슬라이딩 함수
+function slidePage(direction) {
+  if (direction === "next") {
+    currentPage++;
+  } else if (direction === "prev") {
+    currentPage--;
+  }
+
+  // 현재 페이지를 벗어나는 경우 첫 페이지로 돌아감
+  if (currentPage < 0) {
+    currentPage = 0;
+  } else if (currentPage > Math.ceil(photoList.children.length / itemsPerPage) - 1) {
+    currentPage = 0;
+  }
+
+  // 페이지에 해당하는 요소 보이기/숨기기
+  for (let i = 0; i < photoList.children.length; i++) {
+    if (i >= currentPage * itemsPerPage && i < (currentPage + 1) * itemsPerPage) {
+      photoList.children[i].style.display = "block";
+    } else {
+      photoList.children[i].style.display = "none";
+    }
+  }
+}
+
+// Prev 버튼 클릭 시
+photoprev.addEventListener("click", () => {
+  slidePage("prev");
+  photoprev.style.display = "none";
+  photonext.style.display = "block";
+});
+
+// Next 버튼 클릭 시
+photonext.addEventListener("click", () => {
+  slidePage("next");
+  photoprev.style.display = "block";
+  photonext.style.display = "none";
+});
+
+// 초기화
+slidePage("next"); // 처음에 다음 6개 보이게 설정

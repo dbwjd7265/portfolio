@@ -61,6 +61,10 @@ main {
   transform: rotate(-45deg);
 }
 
+header {
+  background: #fff;
+}
+
 header .container {
   height: 80px;
   display: flex;
@@ -70,6 +74,13 @@ header .container {
   justify-content: space-between;
   box-sizing: border-box;
   line-height: 0;
+}
+
+header.fixed {
+  position: fixed;
+  z-index: 99;
+  border-bottom: 1px solid rgb(234, 237, 239);
+  width: 100%;
 }
 
 header .container .logo {
@@ -190,12 +201,12 @@ button.write i {
   width: 340px;
   height: auto;
   transition: all 0.3s;
-  opacity: 0;
+  display: none;
 }
 
 .write-box.on {
   top: 120px;
-  opacity: 1;
+  display: block;
 }
 
 .write-box a {
@@ -464,6 +475,7 @@ section {
 .section-list .img {
   background-size: 100%;
   background-position: center center;
+  background-repeat: no-repeat;
   overflow: hidden;
   position: relative;
   border-radius: 4px;
@@ -768,14 +780,37 @@ section {
 }
 .photo .btn-box button {
   opacity: 1;
+  top: 90px;
 }
 
 .photo .btn-box button.prev {
   left: -25px;
+  display: none;
 }
 
 .photo .btn-box button.next {
   right: -25px;
+}
+
+.photo .moreArt .icon {
+  width: 50px;
+  height: 50px;
+  background-color: #eee;
+  border-radius: 50%;
+  margin: 80px auto 0 auto;
+  position: relative;
+}
+
+.photo .moreArt .icon i {
+  font-size: 30px;
+  text-align: center;
+  line-height: 50px;
+  margin-left: 10px;
+}
+
+.photo .moreArt .text {
+  text-align: center;
+  margin-top: 10px;
 }
 
 /* 유저들의 인테리어 시공 리뷰 */
@@ -792,4 +827,168 @@ section {
 
 .today-plan .section-list a:hover .img {
   background-size: cover;
+}
+
+/* footer */
+footer {
+  padding: 40px 0px;
+  background-color: rgb(247, 249, 250);
+}
+
+footer strong {
+  font-weight: bold;
+}
+
+footer .container {
+  max-width: 1256px;
+  margin: 0px auto;
+  padding: 0px 60px;
+  box-sizing: border-box;
+  font-size: 12px;
+  line-height: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr 1px 2fr;
+  column-gap: 30px;
+}
+
+footer .w1 {
+  width: 1px;
+  background-color: #eaedef;
+}
+
+footer .cs,
+footer .footer-nav {
+  position: relative;
+}
+
+footer .cs .customer {
+  display: block;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 24px;
+  margin-bottom: 20px;
+}
+
+footer .cs .time {
+  font-size: 16px;
+  line-height: 20px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  letter-spacing: -1px;
+}
+
+footer .cs .time strong {
+  margin-right: 10px;
+}
+
+footer .cs .service {
+  font-size: 12px;
+  line-height: 20px;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+  color: #2f3438;
+}
+
+footer .cs .go-link {
+  display: inline-block;
+  font-size: 14px;
+  line-height: 32px;
+  height: 32px;
+  border-radius: 4px;
+  padding: 0px 10px;
+  text-align: center;
+  color: rgb(47, 52, 56);
+  border: 1px solid rgb(218, 221, 224);
+  margin-bottom: 10px;
+}
+
+footer .footer-nav ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(6, min-content);
+  grid-auto-flow: column;
+  gap: 20px 10px;
+}
+
+footer .footer-nav ul li a {
+  font-size: 12px;
+  line-height: 16px;
+  display: inline-block;
+  color: #2f3438;
+}
+
+footer .mark {
+  display: grid;
+  column-gap: 16px;
+  grid-template-columns: max-content 1fr;
+  box-sizing: border-box;
+}
+
+footer .mark > div {
+  display: flex;
+  gap: 6px;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+footer .mark > div span {
+  line-height: 14px;
+  color: rgb(130, 140, 148);
+  font-size: 10px;
+}
+
+footer .company {
+  font-size: 12px;
+  color: rgb(130, 140, 148);
+  line-height: 14px;
+  margin-bottom: 10px;
+}
+footer .company span {
+  padding-right: 10px;
+  position: relative;
+  display: inline-block;
+}
+footer .company span:after {
+  display: block;
+  content: "";
+  width: 1px;
+  height: 10px;
+  position: absolute;
+  top: 1px;
+  right: 3px;
+  background-color: rgb(130, 140, 148);
+}
+
+footer .company span:last-child:after {
+  display: none;
+}
+
+footer .mark .mark2 a {
+  display: inline-block;
+  font-size: 10px;
+}
+
+footer .mark .mark2 div.text {
+  width: 250px;
+}
+
+footer .alret-text {
+  line-height: 14px;
+  color: rgb(130, 140, 148);
+  font-size: 10px;
+  margin: 15px 0;
+}
+
+footer .icon {
+  line-height: 14px;
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+footer .icon a,
+footer .copy {
+  font-size: 10px;
+  color: rgb(130, 140, 148);
 }
