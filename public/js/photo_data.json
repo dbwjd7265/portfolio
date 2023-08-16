@@ -2,22 +2,22 @@
     {
         "user" : "joandaek",
         "img" : "photo_00.avif",
-        "profile" : "profile_00.png"
+        "profile" : "profile_00.avif"
     },
     {
         "user" : "enuhee_home",
         "img" : "photo_01.avif",
-        "profile" : "profile_01.png"
+        "profile" : "profile_01.avif"
     },
     {
         "user" : "LeeHY",
         "img" : "photo_02.avif",
-        "profile" : "profile_02.png"
+        "profile" : "profile_02.jpeg"
     },
     {
         "user" : "손해동이",
         "img" : "photo_03.avif",
-        "profile" : "profile_03.png"
+        "profile" : "profile_03.avif"
     },
     {
         "user" : "애3있는집",
@@ -32,26 +32,26 @@
     {
         "user" : "2yujin",
         "img" : "photo_06.avif",
-        "profile" : "profile_06.png"
+        "profile" : "profile_05.png"
     },
     {
         "user" : "오늘의숨",
         "img" : "photo_07.avif",
-        "profile" : "profile_07.png"
+        "profile" : "profile_05.png"
     },
     {
         "user" : "고씨네찹쌀떡",
         "img" : "photo_08.avif",
-        "profile" : "profile_08.png"
+        "profile" : "profile_05.png"
     },
     {
         "user" : "딸기탕후루",
         "img" : "photo_09.avif",
-        "profile" : "profile_09.png"
+        "profile" : "profile_05.png"
     },
     {
         "user" : "망곰",
         "img" : "photo_10.avif",
-        "profile" : "profile_10.png"
+        "profile" : "profile_05.png"
     }
 ]
