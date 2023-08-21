@@ -660,8 +660,8 @@ section {
   height: 24px;
   border-radius: 50%;
   display: inline-block;
-  background-color: green;
   margin-right: 3px;
+  background-size: contain;
 }
 
 .photo .user-name {
@@ -717,6 +717,13 @@ section {
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 } */
+.best.today-deal article {
+  display: none;
+}
+
+.best.today-deal article.show {
+  display: block;
+}
 
 .best .tag-list ul {
   display: flex;

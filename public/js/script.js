@@ -89,17 +89,16 @@ function calculateRemainingTime() {
   const timeDifference = targetDate - currentTime;
 
   const seconds = Math.floor(timeDifference / 1000) % 60;
-  const formattedSeconds = seconds.toString().padStart(2, '0');
+  const formattedSeconds = seconds.toString().padStart(2, "0");
 
   const minutes = Math.floor(timeDifference / (1000 * 60)) % 60;
-  const formattedMinutes = minutes.toString().padStart(2, '0');
+  const formattedMinutes = minutes.toString().padStart(2, "0");
 
   const hours = Math.floor(timeDifference / (1000 * 60 * 60)) % 24;
-  const formattedHours = hours.toString().padStart(2, '0');
+  const formattedHours = hours.toString().padStart(2, "0");
 
   return `${formattedHours}:${formattedMinutes}:${formattedSeconds} 남음`;
 }
-
 
 // 타이머 업데이트 함수
 function updateTimer(timerId) {
@@ -115,7 +114,6 @@ function initializeTimer(timerId) {
   updateTimer(timerId);
   setInterval(() => updateTimer(timerId), 1000);
 }
-
 
 //20평대 집들이, 여름휴가 즐기기, 팬트리, 가성비와 센스 집들이
 fetch(
@@ -166,7 +164,6 @@ markSpans.forEach((markSpan) => {
 });
 
 //오늘의 딜
-
 document.addEventListener("DOMContentLoaded", function () {
   fetch(
     "https://raw.githubusercontent.com/dbwjd7265/portfolio/dev/public/js/product_data.json"
@@ -210,6 +207,28 @@ document.addEventListener("DOMContentLoaded", function () {
         updateTimer();
         setInterval(updateTimer, 1000);
 
+        //할인율 적용된 가격
+        let price_origin = data[i].price; // 원가
+        let discount_per = data[i].discount; // 할인율
+        let price_final = Math.round(
+          price_origin - price_origin * (discount_per / 100)
+        ); // 최종 가격
+        const formattedPrice = price_final.toLocaleString(); // 3자리 단위로 쉼표
+
+        //무료배송, 특가, 할인쿠폰 유무
+        const product = data[i];
+        let tagHTML = "";
+        if (product.tag.delivery === 0) {
+          tagHTML += '<span class="delivery">무료배송</span>';
+        }
+        if (product.tag.sprice === 0) {
+          tagHTML += '<span class="sprice">특가</span>';
+        }
+        if (product.tag.coupon === 0) {
+          tagHTML +=
+            '<span class="coupon"><i class="bx bxs-coupon"></i>할인쿠폰</span>';
+        }
+
         let todayDeal = `
           <article class="today-deal-item">
             <a href="">
@@ -227,7 +246,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 </p>
                 <div class="price">
                   <strong>${data[i].discount}%</strong>
-                  <span>${data[i].price}</span>
+                  <span>${formattedPrice}</span>
                 </div>
                 <div class="review">
                   <span class="star"><i class="bx bxs-star"></i></span>
@@ -235,9 +254,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   <span class="cnt">리뷰 ${data[i].review}</span>
                 </div>
                 <div class="tag">
-                  <span class="delivery">무료배송</span>
-                  <span class="sprice">특가</span>
-                  <span class="coupon"><i class="bx bxs-coupon"></i>할인쿠폰</span>
+                  ${tagHTML}
                 </div>
               </div>
             </a>
@@ -260,7 +277,7 @@ fetch(
         <a href="">
           <div class="img" style=" background-image: url('./public/img/${photo[i].img}');">
             <div class="user-id">
-              <span class="user-img" style=""></span>
+              <span class="user-img" style="background-image: url('./public/img/${photo[i].profile}');"></span>
               <span class="user-name">${photo[i].user}</span>
             </div>
             <span class="mark"><i class="bx bxs-bookmark"></i></span>
@@ -276,7 +293,7 @@ fetch(
         <p class="icon"><i class='bx bxs-right-arrow-alt'></i></p>
         <p class="text">더보기</p>
       </a>
-    </article>`
+    </article>`;
     photoList.insertAdjacentHTML("beforeend", moreArt);
   });
 
@@ -325,13 +342,25 @@ fetch(
   });
 
 //베스트
+
+/*
+  1. 전체 클릭시 - 모든 상품 순서대로
+  2. 카테고리 버튼을 클릭시
+    - 클릭한 카테고리에 on클래스 붙이기.
+    - 다른 카테고리에 on클래스 제거.
+    - 해당 카테고리에 포함된 상품 출력
+  
+*/
 fetch(
   "https://raw.githubusercontent.com/dbwjd7265/portfolio/dev/public/js/product_data.json"
 )
   .then((response) => response.json())
   .then((data) => {
     const todayDealList = document.querySelector(".best .section-list");
-    for (i = 0; i < 3; i++) {
+
+    const categories = document.querySelectorAll(".best .tag-list label");
+
+    for (i = 0; i < data.length; i++) {
       const targetDate = new Date();
       targetDate.setDate(targetDate.getDate() + 1);
       targetDate.setHours(0, 0, 0, 0);
@@ -362,14 +391,38 @@ fetch(
           timerElement.textContent = formattedTime;
         }
       }
-
       // 초기 업데이트 및 1초마다 업데이트
       updateTimer();
       setInterval(updateTimer, 1000);
+
+      //할인율 적용된 가격
+      let price_origin = data[i].price; // 원가
+      let discount_per = data[i].discount; // 할인율
+      let price_final = Math.round(
+        price_origin - price_origin * (discount_per / 100)
+      ); // 최종 가격
+
+      //무료배송, 특가, 할인쿠폰 유무
+      const product = data[i];
+      let tagHTML = "";
+      if (product.tag.delivery === 0) {
+        tagHTML += '<span class="delivery">무료배송</span>';
+      }
+      if (product.tag.sprice === 0) {
+        tagHTML += '<span class="sprice">특가</span>';
+      }
+      if (product.tag.coupon === 0) {
+        tagHTML +=
+          '<span class="coupon"><i class="bx bxs-coupon"></i>할인쿠폰</span>';
+      }
+      const formattedPrice = price_final.toLocaleString(); // 3자리 단위로 쉼표
+
       let todayDeal = `
-          <article class="today-deal-item">
+          <article class="today-deal-item show" data-cate="${data[i].tag.cate}">
             <a href="">
-              <div class="img" style=" background-image: url('./public/img/${data[i].img}');">
+              <div class="img" style=" background-image: url('./public/img/${
+                data[i].img
+              }');">
               <span class="top-tag time" id="${timerId}">${calculateRemainingTime()}</span>
                 <span class="mark"><i class="bx bxs-bookmark"></i></span>
               </div>
@@ -381,7 +434,7 @@ fetch(
                 </p>
                 <div class="price">
                   <strong>${data[i].discount}%</strong>
-                  <span>${data[i].price}</span>
+                  <span>${formattedPrice}</span>
                 </div>
                 <div class="review">
                   <span class="star"><i class="bx bxs-star"></i></span>
@@ -389,15 +442,74 @@ fetch(
                   <span class="cnt">리뷰 ${data[i].review}</span>
                 </div>
                 <div class="tag">
-                  <span class="delivery">무료배송</span>
-                  <span class="sprice">특가</span>
-                  <span class="coupon"><i class="bx bxs-coupon"></i>할인쿠폰</span>
+                  ${tagHTML}
                 </div>
               </div>
             </a>
           </article>`;
       todayDealList.insertAdjacentHTML("beforeend", todayDeal);
     }
+
+    
+    const cate_all = document.querySelectorAll(".best .tag-list li")[0]; //전체
+    const cate_food = document.querySelectorAll(".best .tag-list li")[1]; //식품
+    const cate_digi = document.querySelectorAll(".best .tag-list li")[2]; //디지털,가전
+    const cate_pet = document.querySelectorAll(".best .tag-list li")[3]; //반려동물
+    const cate_life = document.querySelectorAll(".best .tag-list li")[4]; //생필품
+    const cate_deco = document.querySelectorAll(".best .tag-list li")[5]; //데코, 식물
+    const allproduct = document.querySelectorAll(".today-deal-item"); //전제품
+
+    cate_food.addEventListener("click", function () {
+      const allProducts = document.querySelectorAll(".today-deal-item");
+      cate_food.querySelector(".food").classList.add("on");
+      const otherCateLabels = document.querySelectorAll(
+        ".best .tag-list li label"
+      );
+      otherCateLabels.forEach((label) => {
+        if (label !== cate_food.querySelector(".food")) {
+          label.classList.remove("on");
+        }
+      });
+      allProducts.forEach((product) => {
+        const dataCate = product.getAttribute("data-cate");
+        if (dataCate === "식품") {
+          product.classList.add("show");
+        } else {
+          product.classList.remove("show");
+        }
+      });
+    });
+
+    cate_digi.addEventListener("click", function () {
+      const allProducts = document.querySelectorAll(".today-deal-item");
+      cate_digi.querySelector(".digi").classList.add("on");
+      const otherCateLabels = document.querySelectorAll(
+        ".best .tag-list li label"
+      );
+      otherCateLabels.forEach((label) => {
+        if (label !== cate_digi.querySelector(".digi")) {
+          label.classList.remove("on");
+        }
+      });
+      allProducts.forEach((product) => {
+        const dataCate = product.getAttribute("data-cate");
+        if (dataCate === "가전·디지털") {
+          product.classList.add("show");
+        } else {
+          product.classList.remove("show");
+        }
+      });
+    });
+
+    cate_all.addEventListener("click", function () {
+      this.classList.add("on");
+      const allProducts = document.querySelectorAll(".today-deal-item");
+      allProducts.forEach((product) => {
+        product.classList.add("show");
+      });
+    });
+
+
   });
 
 //캐러셀
@@ -452,30 +564,27 @@ setInterval(autoSlide, 3000);
 updatePagination();
 moveToSlide(currentIndex);
 
-
 //상단 배너 닫기
 const topBanner = document.querySelector(".top-baaner button");
-topBanner.addEventListener("click", function(){
+topBanner.addEventListener("click", function () {
   document.querySelector(".top-baaner").style.display = "none";
 });
 
 // 헤더 요소 선택
-const header = document.querySelector('.header');
-    
+const header = document.querySelector(".header");
+
 // 스크롤 이벤트 리스너 추가
-window.addEventListener('scroll', () => {
+window.addEventListener("scroll", () => {
   // 스크롤 위치 계산
   const scrollPosition = window.scrollY;
-  
+
   // 헤더 고정 여부 결정
   if (scrollPosition >= 100) {
-    header.classList.add('fixed');
+    header.classList.add("fixed");
   } else {
-    header.classList.remove('fixed');
+    header.classList.remove("fixed");
   }
 });
-
-
 
 const photoList = document.querySelector(".photo .section-list");
 const photoprev = document.querySelector(".photo .prev");
@@ -494,13 +603,19 @@ function slidePage(direction) {
   // 현재 페이지를 벗어나는 경우 첫 페이지로 돌아감
   if (currentPage < 0) {
     currentPage = 0;
-  } else if (currentPage > Math.ceil(photoList.children.length / itemsPerPage) - 1) {
+  } else if (
+    currentPage >
+    Math.ceil(photoList.children.length / itemsPerPage) - 1
+  ) {
     currentPage = 0;
   }
 
   // 페이지에 해당하는 요소 보이기/숨기기
   for (let i = 0; i < photoList.children.length; i++) {
-    if (i >= currentPage * itemsPerPage && i < (currentPage + 1) * itemsPerPage) {
+    if (
+      i >= currentPage * itemsPerPage &&
+      i < (currentPage + 1) * itemsPerPage
+    ) {
       photoList.children[i].style.display = "block";
     } else {
       photoList.children[i].style.display = "none";

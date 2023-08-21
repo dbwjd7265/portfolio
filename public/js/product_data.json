@@ -29,7 +29,7 @@
         "review": 5068,
         "tag" : {
             "delivery" : 0,
-            "sprice" : 0,
+            "sprice" : 1,
             "coupon" : 1,
             "cate" : "가전·디지털"
         }
@@ -133,7 +133,7 @@
             "delivery" : 1,
             "sprice" : 0,
             "coupon" : 1,
-            "cate" : "가전·디지털"
+            "cate" : "데코·식물"
         }
     },
     {
@@ -150,7 +150,7 @@
             "delivery" : 1,
             "sprice" : 0,
             "coupon" : 1,
-            "cate" : "가전·디지털"
+            "cate" : "생필품"
         }
     },
     {
@@ -167,7 +167,7 @@
             "delivery" : 0,
             "sprice" : 0,
             "coupon" : 1,
-            "cate" : "가전·디지털"
+            "cate" : "생필품"
         }
     }
 ]
