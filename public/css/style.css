@@ -5,10 +5,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400;700&display=swap');
 @import "reset.css";
 
-html, body ,a, p, span {
-  font-family: 'Noto Sans KR', sans-serif;
-}
-
 .container,
 main {
   max-width: 1256px;
