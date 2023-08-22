@@ -2,8 +2,12 @@
 1. 화면 너비 768 미만에서 모바일 화면으로 최소 사이즈는 500.
 컨텐츠 최대 1256px padding: 0 60px 포함
 */
-
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400;700&display=swap');
 @import "reset.css";
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+}
 
 .container,
 main {
