@@ -299,6 +299,7 @@ nav span a.on:after {
   position: absolute;
   left: 30px;
   bottom: 30px;
+  width: calc(100% - 60px);
 }
 
 .banner .big-banner .text .title {
@@ -328,22 +329,37 @@ nav span a.on:after {
   height: 100%;
   position: relative;
   transition: all 0.3s;
-  width: 269px;
 }
 
 .slide-box {
   overflow: hidden;
   border-radius: 5px;
+  height: 100%;
 }
 
 .slide-wrap {
   display: flex;
   transition: transform 0.5s ease-in-out;
   width: 100%; /* 추가 */
+  height: 100%;
 }
 
 .slide-content {
   flex: 0 0 269px;
+  /* height: 508px; */
+  background-position: center center;
+  background-size: contain;
+  position: relative;
+}
+
+.slide-content img {
+  position: absolute;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transition: all 0.3s;
 }
 
 .pagination {
@@ -457,6 +473,8 @@ section {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+  height: 390px;
+  overflow-y: hidden;
 }
 
 .section-list.flex {
@@ -468,19 +486,28 @@ section {
   margin-right: 20px;
 }
 
-.section-list a:hover .img {
-  background-size: 110%;
-}
-
 .section-list .img {
-  background-size: 100%;
+  /* background-size: 110%;
   background-position: center center;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
   overflow: hidden;
   position: relative;
   border-radius: 4px;
   margin-bottom: 10px;
+}
+
+.section-list img {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
   transition: all 0.3s;
+}
+
+.section-list a:hover img {
+  transform: translate(-50%, -50%) scale(1.1);
 }
 
 .section-list .img .top-tag {
@@ -999,3 +1026,11 @@ footer .copy {
   font-size: 10px;
   color: rgb(130, 140, 148);
 }
+
+/* 반응형 미디어 쿼리 */
+
+/*
+1200이하 : 배너, 이벤트 배너 사이즈 변경하기
+
+1024px 이하 : 이런사진 찾고있나요 6그리드 -> 4그리드. 가로 증가, 세로 증가289 / 푸터 레이아웃 변화
+*/

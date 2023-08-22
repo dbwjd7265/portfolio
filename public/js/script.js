@@ -137,8 +137,9 @@ fetch(
         let postlist = `
         <article>
           <a href="#">
-            <div class="img" style="background-image: url('./public/img/${data[i].img}')">
+            <div class="img">
               ${newElement}
+              <img src="./public/img/${data[i].img}" alt="" /> 
               <span class="mark"><i class='bx bxs-bookmark' ></i></span>
             </div>
             <div class="text">
@@ -232,9 +233,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let todayDeal = `
           <article class="today-deal-item">
             <a href="">
-              <div class="img" style=" background-image: url('./public/img/${
-                data[i].img
-              }');">
+              <div class="img" style=" background-image: url('./public/img/${data[i].img}');">
               <span class="top-tag time" id="${timerId}">${calculateRemainingTime()}</span>
                 <span class="mark"><i class="bx bxs-bookmark"></i></span>
               </div>
@@ -450,66 +449,69 @@ fetch(
       todayDealList.insertAdjacentHTML("beforeend", todayDeal);
     }
 
-    
+    //카테고리 선택
+    function filterProductsByCategory(category, categoryLabel) {
+      const allProducts = document.querySelectorAll(".today-deal-item");
+      categoryLabel.classList.add("on");
+      const otherCateLabels = document.querySelectorAll(
+        ".best .tag-list li label"
+      );
+      otherCateLabels.forEach((label) => {
+        if (label !== categoryLabel) {
+          label.classList.remove("on");
+        }
+      });
+
+      allProducts.forEach((product) => {
+        const dataCate = product.getAttribute("data-cate");
+        if (dataCate === category) {
+          product.classList.add("show");
+        } else {
+          product.classList.remove("show");
+        }
+      });
+    }
+
     const cate_all = document.querySelectorAll(".best .tag-list li")[0]; //전체
     const cate_food = document.querySelectorAll(".best .tag-list li")[1]; //식품
     const cate_digi = document.querySelectorAll(".best .tag-list li")[2]; //디지털,가전
     const cate_pet = document.querySelectorAll(".best .tag-list li")[3]; //반려동물
     const cate_life = document.querySelectorAll(".best .tag-list li")[4]; //생필품
     const cate_deco = document.querySelectorAll(".best .tag-list li")[5]; //데코, 식물
-    const allproduct = document.querySelectorAll(".today-deal-item"); //전제품
 
     cate_food.addEventListener("click", function () {
-      const allProducts = document.querySelectorAll(".today-deal-item");
-      cate_food.querySelector(".food").classList.add("on");
-      const otherCateLabels = document.querySelectorAll(
-        ".best .tag-list li label"
-      );
-      otherCateLabels.forEach((label) => {
-        if (label !== cate_food.querySelector(".food")) {
-          label.classList.remove("on");
-        }
-      });
-      allProducts.forEach((product) => {
-        const dataCate = product.getAttribute("data-cate");
-        if (dataCate === "식품") {
-          product.classList.add("show");
-        } else {
-          product.classList.remove("show");
-        }
-      });
+      filterProductsByCategory("식품", this.querySelector(".food"));
+    });
+
+    cate_pet.addEventListener("click", function () {
+      filterProductsByCategory("반려동물", this.querySelector(".pet"));
     });
 
     cate_digi.addEventListener("click", function () {
-      const allProducts = document.querySelectorAll(".today-deal-item");
-      cate_digi.querySelector(".digi").classList.add("on");
-      const otherCateLabels = document.querySelectorAll(
-        ".best .tag-list li label"
-      );
-      otherCateLabels.forEach((label) => {
-        if (label !== cate_digi.querySelector(".digi")) {
-          label.classList.remove("on");
-        }
-      });
-      allProducts.forEach((product) => {
-        const dataCate = product.getAttribute("data-cate");
-        if (dataCate === "가전·디지털") {
-          product.classList.add("show");
-        } else {
-          product.classList.remove("show");
-        }
-      });
+      filterProductsByCategory("가전·디지털", this.querySelector(".digi"));
+    });
+
+    cate_life.addEventListener("click", function () {
+      filterProductsByCategory("생필품", this.querySelector(".life"));
+    });
+
+    cate_deco.addEventListener("click", function () {
+      filterProductsByCategory("데코·식물", this.querySelector(".deco"));
     });
 
     cate_all.addEventListener("click", function () {
-      this.classList.add("on");
+      const labelElement = cate_all.querySelector("label");
+      const otherLabels = document.querySelectorAll(".best .tag-list li label");
+      otherLabels.forEach((label) => {
+        label.classList.remove("on");
+      });
+      labelElement.classList.add("on");
+
       const allProducts = document.querySelectorAll(".today-deal-item");
       allProducts.forEach((product) => {
         product.classList.add("show");
       });
     });
-
-
   });
 
 //캐러셀
@@ -557,8 +559,7 @@ function autoSlide() {
   moveToSlide(currentIndex + 1);
 }
 
-// 5초 간격으로 자동 슬라이드 실행
-setInterval(autoSlide, 3000);
+// setInterval(autoSlide, 3000);
 
 // 초기화
 updatePagination();
